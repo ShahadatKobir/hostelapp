@@ -1,0 +1,49 @@
+<h2>Admin Dashboard</h2>
+
+<h3>Add Member</h3>
+<form action="/admin/add_member" method="post">
+<input type="text" name="name" placeholder="Name" required>
+<input type="text" name="username" placeholder="Username" required>
+<input type="password" name="password" placeholder="Password" required>
+<button type="submit">Add Member</button>
+</form>
+
+<h3>Add Deposit</h3>
+<form action="/admin/add_deposit" method="post">
+<select name="member_id">
+{% for m in members %}
+<option value="{{m[0]}}">{{m[1]}}</option>
+{% endfor %}
+</select>
+<input type="number" name="amount" placeholder="Amount" required>
+<button type="submit">Add Deposit</button>
+</form>
+
+<h3>Pending Bazar</h3>
+<table border="1" cellpadding="5">
+<tr><th>Item</th><th>Cost</th><th>Added By</th><th>Action</th></tr>
+{% for b in pending_bazar %}
+<tr>
+<td>{{b[1]}}</td>
+<td>{{b[2]}}</td>
+<td>{{b[4]}}</td>
+<td><a href="/admin/approve_bazar/{{b[0]}}"><button>Approve</button></a></td>
+</tr>
+{% endfor %}
+</table>
+
+<h3>All Meals</h3>
+<table border="1" cellpadding="5">
+<tr><th>Member</th><th>Date</th><th>Meals</th></tr>
+{% for m in all_meals %}
+<tr><td>{{m[3]}}</td><td>{{m[1]}}</td><td>{{m[2]}}</td></tr>
+{% endfor %}
+</table>
+
+<h3>All Deposits</h3>
+<table border="1" cellpadding="5">
+<tr><th>Member</th><th>Date</th><th>Amount</th></tr>
+{% for d in all_deposits %}
+<tr><td>{{d[3]}}</td><td>{{d[2]}}</td><td>{{d[1]}}</td></tr>
+{% endfor %}
+</table>
