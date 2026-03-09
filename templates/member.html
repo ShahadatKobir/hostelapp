@@ -1,0 +1,36 @@
+<h2>Welcome {{member[1]}}</h2>
+<p>Date: {{today}}</p>
+<p>Total Bazar: {{total_bazar}}</p>
+<p>Total Meals: {{total_meals}}</p>
+<p>Meal Rate: {{meal_rate}}</p>
+<p>Your Meals: {{member_meals}}</p>
+<p>Your Balance: {{balance}}</p>
+
+<h3>Add Meal</h3>
+<form action="/member/{{member[0]}}/add_meal" method="post">
+<input type="number" name="meals" placeholder="Number of meals" min="0" required>
+<button type="submit">Add Meal</button>
+</form>
+
+<h3>Add Bazar Item</h3>
+<form action="/member/{{member[0]}}/add_bazar" method="post">
+<input type="text" name="item" placeholder="Item Name" required>
+<input type="number" name="cost" placeholder="Cost" min="0" step="0.01" required>
+<button type="submit">Add Bazar</button>
+</form>
+
+<h3>Your Meals</h3>
+<table border="1" cellpadding="5">
+<tr><th>Date</th><th>Meals</th></tr>
+{% for m in meals %}
+<tr><td>{{m[2]}}</td><td>{{m[3]}}</td></tr>
+{% endfor %}
+</table>
+
+<h3>Your Deposits</h3>
+<table border="1" cellpadding="5">
+<tr><th>Date</th><th>Amount</th></tr>
+{% for d in deposits %}
+<tr><td>{{d[3]}}</td><td>{{d[2]}}</td></tr>
+{% endfor %}
+</table>
